@@ -39,6 +39,11 @@ public class ProgramController {
         //Ball ball1 = new Ball(150,150);
         //viewController.draw(ball1);
 
+        Background background = new Background();
+        viewController.draw(background);
+
+
+
 
 
     }
