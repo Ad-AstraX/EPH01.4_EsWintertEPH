@@ -42,12 +42,15 @@ public class ProgramController {
         Background background = new Background();
         viewController.draw(background);
 
-
-
-
-
+        Snowflake[] snowflakes = new Snowflake[200];
+        for (int i = 0; i < 200; i++) {
+            snowflakes[i] = new Snowflake ();
+        }
+        for (Snowflake snowflake : snowflakes) {
+            viewController.draw(snowflake);
+        }
+        viewController.draw(new Snowflake ());
     }
-
     /**
      * Aufruf mit jeder Frame
      * @param dt Zeit seit letzter Frame
