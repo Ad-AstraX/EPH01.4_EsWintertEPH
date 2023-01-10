@@ -42,29 +42,21 @@ public class ProgramController {
         // Erstelle ein Objekt der Klasse Ball und lasse es zeichnen
         //Ball ball1 = new Ball(150,150);
         //viewController.draw(ball1);
-
         Background background = new Background();
         viewController.draw(background);
+
         Snowflake[] snowflakes = new Snowflake[200];
         for (int i = 0; i < 200; i++) {
-            snowflakes[i] = new Snowflake (cameraX, cameraY);
+            snowflakes[i] = new Snowflake ();
         }
         for (Snowflake snowflake : snowflakes) {
             viewController.draw(snowflake);
         }
-        viewController.draw(new Snowflake (cameraX, cameraY));
     }
     /**
      * Aufruf mit jeder Frame
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-        if (MouseInfo.getPointerInfo().getLocation().x > 0 && MouseInfo.getPointerInfo().getLocation().x < 300) {
-            cameraX -= 50*dt;
-        } else if (MouseInfo.getPointerInfo().getLocation().x > 500 && MouseInfo.getPointerInfo().getLocation().x < 800) {
-            cameraX += 50*dt;
-        } else {
-            cameraX = 0;
-        }
     }
 }
