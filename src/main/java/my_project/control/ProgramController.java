@@ -1,13 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.abitur.datenstrukturen.Queue;
-import javafx.scene.PerspectiveCamera;
 import my_project.model.*;
-import my_project.view.InputManager;
-
-import java.awt.*;
-import java.awt.event.MouseEvent;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -44,6 +38,13 @@ public class ProgramController {
         //viewController.draw(ball1);
         Background background = new Background();
         viewController.draw(background);
+
+        FirTree firTree1 = new FirTree(0,0);
+        viewController.draw(firTree1);
+        FirTree firTree2 = new FirTree(350,25);
+        viewController.draw(firTree2);
+        FirTree firTree3 = new FirTree(200,100);
+        viewController.draw(firTree3);
 
         Snowflake[] snowflakes = new Snowflake[200];
         for (int i = 0; i < 200; i++) {
