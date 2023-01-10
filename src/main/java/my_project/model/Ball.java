@@ -13,7 +13,7 @@ public class Ball extends GraphicalObject {
 
     /**
      * Erzeugt einen neuen QueueBall
-     * @param x Startposition x
+     * @param x Startposition xS
      * @param y Startposition y
      */
     public Ball(double x, double y){
