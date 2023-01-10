@@ -2,9 +2,11 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.abitur.datenstrukturen.Queue;
+import javafx.scene.PerspectiveCamera;
 import my_project.model.*;
 import my_project.view.InputManager;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -34,6 +36,8 @@ public class ProgramController {
      * Diese Methode wird genau ein mal nach Programmstart aufgerufen.
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
+    int cameraX = 0;
+    int cameraY = 0;
     public void startProgram() {
         // Erstelle ein Objekt der Klasse Ball und lasse es zeichnen
         //Ball ball1 = new Ball(150,150);
@@ -41,21 +45,26 @@ public class ProgramController {
 
         Background background = new Background();
         viewController.draw(background);
-
         Snowflake[] snowflakes = new Snowflake[200];
         for (int i = 0; i < 200; i++) {
-            snowflakes[i] = new Snowflake ();
+            snowflakes[i] = new Snowflake (cameraX, cameraY);
         }
         for (Snowflake snowflake : snowflakes) {
             viewController.draw(snowflake);
         }
-        viewController.draw(new Snowflake ());
+        viewController.draw(new Snowflake (cameraX, cameraY));
     }
     /**
      * Aufruf mit jeder Frame
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-
+        if (MouseInfo.getPointerInfo().getLocation().x > 0 && MouseInfo.getPointerInfo().getLocation().x < 300) {
+            cameraX -= 50*dt;
+        } else if (MouseInfo.getPointerInfo().getLocation().x > 500 && MouseInfo.getPointerInfo().getLocation().x < 800) {
+            cameraX += 50*dt;
+        } else {
+            cameraX = 0;
+        }
     }
 }
