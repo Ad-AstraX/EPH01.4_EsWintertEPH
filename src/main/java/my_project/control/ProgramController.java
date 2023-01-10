@@ -36,8 +36,10 @@ public class ProgramController {
      */
     public void startProgram() {
         // Erstelle ein Objekt der Klasse Ball und lasse es zeichnen
-        Ball ball1 = new Ball(150,150);
-        viewController.draw(ball1);
+        //Ball ball1 = new Ball(150,150);
+        //viewController.draw(ball1);
+
+
 
     }
 
