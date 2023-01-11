@@ -39,8 +39,13 @@ public class ProgramController {
         Background background = new Background();
         viewController.draw(background);
 
+
         FirTree firTree1 = new FirTree(0,0);
         viewController.draw(firTree1);
+
+        Snowman snowman1 = new Snowman(180,475);
+        viewController.draw(snowman1);
+
         FirTree firTree2 = new FirTree(350,25);
         viewController.draw(firTree2);
         FirTree firTree3 = new FirTree(200,100);
