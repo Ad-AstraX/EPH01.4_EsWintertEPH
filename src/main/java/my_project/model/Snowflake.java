@@ -1,17 +1,14 @@
 package my_project.model;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-import com.sun.javafx.stage.WindowHelper;
 
 import java.awt.*;
-import java.awt.event.WindowAdapter;
 
 public class Snowflake extends GraphicalObject{
-    // Image image = ImageIO.read(new File("demo.jpg"));
+
     int cameraX;
     int cameraY;
     int direction;
@@ -26,12 +23,18 @@ public class Snowflake extends GraphicalObject{
         direction = (int)(-1.9+Math.random()*1.9);
         this.cameraX = 0;
         this.cameraY = 0;
+        // set Costume
+        this.setNewImage(chooseLook((int)(Math.random()*2.99)));
     }
+
     public void draw (DrawTool drawTool) {
         drawTool.setCurrentColor(new Color (255, 255, 255));
-        drawTool.drawFilledCircle(x+cameraX, y+cameraY, radius);
+        //drawTool.drawFilledCircle(x+cameraX, y+cameraY, radius);
+        drawTool.drawImage(this.getMyImage(), x, y);
     }
+
     public void update (double dt) {
+        // control snowflakes
         y += speed*dt;
         x += direction*(speed/5*dt);
         if (y > 600+radius) {
@@ -41,7 +44,7 @@ public class Snowflake extends GraphicalObject{
             x = Math.random()*800;
             y = 0 - radius;
         }
-
+        // check for position of mouse and react accordingly
         int mouseX = MouseInfo.getPointerInfo().getLocation().x;
         if (mouseX > 0 && mouseX < 300) {
             cameraX -= 100*dt;
@@ -49,7 +52,11 @@ public class Snowflake extends GraphicalObject{
             cameraX += 100 * dt;
         }
     }
-    public String chooseLook (){
-        return "later";
+    public String chooseLook (int index){
+        String[] looks = {"src/main/resources/graphic/schneeflocke1.png",
+                          "src/main/resources/graphic/schneeflocke2.png",
+                          "src/main/resources/graphic/schneeflocke3.png",
+                         };
+        return looks[index];
     }
 }
