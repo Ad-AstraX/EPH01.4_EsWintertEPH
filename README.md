@@ -1,3 +1,6 @@
+This project was created in school together with two of my classmates
+
+
 # Projektvorlage_KAGO4_Gradle
 ###_Leere Projektvorlage für alle Projekte auf Basis von KAGO4_
 
