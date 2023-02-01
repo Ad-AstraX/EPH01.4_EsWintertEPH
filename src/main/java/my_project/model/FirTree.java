@@ -5,7 +5,7 @@ import KAGO_framework.view.DrawTool;
 
 import java.awt.*;
 
-public class FirTree extends GraphicalObject {
+public class FirTree extends FirTrees {
 
     public FirTree(double x, double y){
         this.x = x;

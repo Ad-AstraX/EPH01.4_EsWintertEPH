@@ -1,11 +1,14 @@
 package my_project.model;
 
-import javax.swing.*;
-
+import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Snowflake extends GraphicalObject{
 
@@ -13,24 +16,19 @@ public class Snowflake extends GraphicalObject{
     int cameraY;
     int direction;
     double speed;
-    boolean moving;
     public Snowflake () {
         radius = (int)(1 + Math.random()*4);
         speed = radius*30;
-        moving = true;
-        x = -50 + Math.random()*800;
+        x = -500 + Math.random()*1300;
         y = Math.random()*-100;
         direction = (int)(-1.9+Math.random()*1.9);
         this.cameraX = 0;
         this.cameraY = 0;
-        // set Costume
-        this.setNewImage(chooseLook((int)(Math.random()*2.99)));
     }
 
     public void draw (DrawTool drawTool) {
         drawTool.setCurrentColor(new Color (255, 255, 255));
-        //drawTool.drawFilledCircle(x+cameraX, y+cameraY, radius);
-        drawTool.drawImage(this.getMyImage(), x, y);
+        drawTool.drawFilledCircle(x+cameraX, y+cameraY, radius);
     }
 
     public void update (double dt) {
@@ -40,23 +38,20 @@ public class Snowflake extends GraphicalObject{
         if (y > 600+radius) {
             radius = (int)(1 + Math.random()*4);
             speed = radius*50;
-            moving = true;
             x = Math.random()*800;
             y = 0 - radius;
         }
-        // check for position of mouse and react accordingly
-        int mouseX = MouseInfo.getPointerInfo().getLocation().x;
-        if (mouseX > 0 && mouseX < 300) {
-            cameraX -= 100*dt;
-        } else if (mouseX > 500 && mouseX < 800) {
-            cameraX += 100 * dt;
+        //if (x > 800+radius ){
+            //x = 0;
+        //} x < -50-radius) {
+            //x = Math.random()*600;
         }
-    }
-    public String chooseLook (int index){
-        String[] looks = {"src/main/resources/graphic/schneeflocke1.png",
-                          "src/main/resources/graphic/schneeflocke2.png",
-                          "src/main/resources/graphic/schneeflocke3.png",
-                         };
-        return looks[index];
+        // check for key presses and pan camera accordingly
+        if (ViewController.isKeyDown(0x25)) {
+            cameraX -= 150 * dt;
+        }
+        if (ViewController.isKeyDown(0x27)) {
+            cameraX += 150 * dt;
+        }
     }
 }

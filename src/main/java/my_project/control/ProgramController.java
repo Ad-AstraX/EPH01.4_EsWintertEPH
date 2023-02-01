@@ -39,7 +39,6 @@ public class ProgramController {
         Background background = new Background();
         viewController.draw(background);
 
-
         FirTree firTree1 = new FirTree(0,0);
         viewController.draw(firTree1);
 
