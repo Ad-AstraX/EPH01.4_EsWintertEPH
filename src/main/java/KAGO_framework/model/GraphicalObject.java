@@ -19,6 +19,9 @@ public class GraphicalObject implements Drawable {
     protected double x = 0, y = 0; // Die Koordinaten des Objekts
     protected double width = 0, height = 0; // Die rechteckige Ausdehnung des Objekts, wobei x/y die obere, linke Ecke angeben
     protected double radius = 0; //Falls ein Radius gesetzt wurde (also größer als 0 ist), wird collidesWith angepasst.
+    protected double vy = 0;
+    protected double velocity = 0;
+    protected double vx = 0;
 
     // Referenzen
     private BufferedImage myImage;
@@ -26,27 +29,29 @@ public class GraphicalObject implements Drawable {
     /**
      * Der generische Konstruktur ermöglicht einen optionalen super-Aufruf in den Unterklassen
      */
-    public GraphicalObject(){
+    public GraphicalObject() {
 
     }
 
     /**
      * Mit diesem Konstruktor kann direkt ein GraphicalObject mit Bild und grundlegenden Methoden
      * verwendet werden.
+     *
      * @param picturePath der Pfad zur Bilddatei
      */
-    public GraphicalObject(String picturePath){
+    public GraphicalObject(String picturePath) {
         this.setNewImage(picturePath);
     }
 
     /**
      * Mit diesem Konstruktor kann direkt ein GraphicalObject mit Bild und grundlegenden Methoden
      * verwendet werden. Zudem kann es positioniert werden.
-     * @param x die x-Koordinate (obere linke Ecke)
-     * @param y die y-Koordinate (obere linke Ecke)
+     *
+     * @param x           die x-Koordinate (obere linke Ecke)
+     * @param y           die y-Koordinate (obere linke Ecke)
      * @param picturePath
      */
-    public GraphicalObject(String picturePath, double x, double y){
+    public GraphicalObject(String picturePath, double x, double y) {
         this.x = x;
         this.y = y;
         this.setNewImage(picturePath);
@@ -55,23 +60,26 @@ public class GraphicalObject implements Drawable {
     /**
      * Lädt ein Bild, das zur Repräsentation des Objekts benutzt werden kann.
      * Passt automatisch die Attribute für Breite und Höhe der des Bildes an.
+     *
      * @param pathToImage Der Pfad zu dem zu ladenden Bild
      */
-    public BufferedImage createImage(String pathToImage){
+    public BufferedImage createImage(String pathToImage) {
         BufferedImage tmpImage = null;
         try {
             tmpImage = ImageIO.read(new File(pathToImage));
         } catch (IOException e) {
-            if ( Config.INFO_MESSAGES) System.out.println("Laden eines Bildes fehlgeschlagen: "+pathToImage+"\n Hast du den Pfad und Dateinamen richtig geschrieben?");
+            if (Config.INFO_MESSAGES)
+                System.out.println("Laden eines Bildes fehlgeschlagen: " + pathToImage + "\n Hast du den Pfad und Dateinamen richtig geschrieben?");
         }
         return tmpImage;
     }
 
     /**
      * Lädt ein neues Bild und setzt es als aktuelles Bild
+     *
      * @param pathToImage Der Pfad zu dem zu ladenden Bild
      */
-    public void setNewImage(String pathToImage){
+    public void setNewImage(String pathToImage) {
         try {
             myImage = ImageIO.read(new File(pathToImage));
             width = myImage.getWidth();
@@ -83,6 +91,7 @@ public class GraphicalObject implements Drawable {
 
     /**
      * Setzt ein BufferedImage als neues Bild, passt width und height des Objekts an die Bilddimension an
+     *
      * @param image Der Pfad zu dem zu ladenden Bild
      */
     public void setImage(BufferedImage image) {
@@ -96,8 +105,8 @@ public class GraphicalObject implements Drawable {
      * Wird vom Hintergrundprozess für jeden Frame aufgerufen. Nur hier kann die grafische Repräsentation des Objekts realisiert
      * werden. Es ist möglich über das Grafikobjekt "drawTool" ein Bild zeichnen zu lassen, aber auch geometrische Formen sind machbar.
      */
-    public void draw(DrawTool drawTool){
-        if(getMyImage() != null) drawTool.drawImage(getMyImage(),x,y);
+    public void draw(DrawTool drawTool) {
+        if (getMyImage() != null) drawTool.drawImage(getMyImage(), x, y);
     }
 
     @Override
@@ -105,28 +114,32 @@ public class GraphicalObject implements Drawable {
      * Wird vom Hintergrundprozess für jeden Frame aufgerufen. Hier kann das verhalten des Objekts festgelegt werden, zum Beispiel
      * seine Bewegung.
      */
-    public void update(double dt){
+    public void update(double dt) {
 
     }
 
     /**
      * Überprüft, ob das übergebene Objekt mit diesem GraphicalObject kollidiert (Rechteckkollision). Dabei werden die Koordinaten und
      * die Breite und Höhe des Objekts berücksichtigt.
+     *
      * @param gO Das Objekt, das auf Kollision überprüft wird
      * @return True, falls eine Kollision besteht, sonst false.
      */
-    public boolean collidesWith(GraphicalObject gO){
-        if(radius == 0){
-            if(gO.getRadius() == 0){
-                if ( x < gO.getX()+gO.getWidth() && x + width > gO.getX() && y < gO.getY() + gO.getHeight() && y + height > gO.getY() ) return true;
-            }else{
-                if ( x < gO.getX()+gO.getRadius() && x + width > gO.getX()-gO.getRadius() && y < gO.getY() + gO.getRadius() && y + height > gO.getY()-gO.getRadius() ) return true;
+    public boolean collidesWith(GraphicalObject gO) {
+        if (radius == 0) {
+            if (gO.getRadius() == 0) {
+                if (x < gO.getX() + gO.getWidth() && x + width > gO.getX() && y < gO.getY() + gO.getHeight() && y + height > gO.getY())
+                    return true;
+            } else {
+                if (x < gO.getX() + gO.getRadius() && x + width > gO.getX() - gO.getRadius() && y < gO.getY() + gO.getRadius() && y + height > gO.getY() - gO.getRadius())
+                    return true;
             }
-        }else{
-            if(gO.getRadius() == 0){
-                if ( gO.getX() < x+radius && gO.getX() + gO.getWidth() > x-radius && gO.getY() < y + radius && gO.getY() + gO.getHeight() > y-radius ) return true;
-            }else{
-                if(getDistanceTo(gO)<=radius+gO.getRadius()) return true;
+        } else {
+            if (gO.getRadius() == 0) {
+                if (gO.getX() < x + radius && gO.getX() + gO.getWidth() > x - radius && gO.getY() < y + radius && gO.getY() + gO.getHeight() > y - radius)
+                    return true;
+            } else {
+                if (getDistanceTo(gO) <= radius + gO.getRadius()) return true;
             }
         }
 
@@ -136,20 +149,28 @@ public class GraphicalObject implements Drawable {
     /**
      * Prüft, ob ein Punkt innerhalb des GraphicalObjects liegt. Dazu müssen x,y,width und height vom
      * GraphicalObject gesetzt sein (passiert bei Bildzuweisung automatisch)
+     *
      * @param pX die x-Koordinate des Punktes
      * @param pY die y-Koordinate des Punktes
      * @return true, falls der Punkt im Objekt liegt, sonst false
      */
-    public boolean collidesWith(double pX, double pY){
-        if(radius == 0){
-            if ( pX < getX() + getWidth() && pX > getX() && pY < getY() + getHeight() && pY > getY() ) return true;
-        }else{
+    public boolean collidesWith(double pX, double pY) {
+        if (radius == 0) {
+            if (pX < getX() + getWidth() && pX > getX() && pY < getY() + getHeight() && pY > getY()) return true;
+        } else {
             double midX = x + radius;
             double midY = y + radius;
-            if(Math.sqrt( Math.pow(midX-pX, 2) + Math.pow(midY-pY,2)) < radius) return true;
+            if (Math.sqrt(Math.pow(midX - pX, 2) + Math.pow(midY - pY, 2)) < radius) return true;
         }
 
         return false;
+    }
+
+    public boolean collidesWith(double x1, double y1, double w1, double h1, double x2, double y2, double w2, double h2){
+        return  x1 < x2 + w2 &
+                x2 < x1 + w1 &
+                y1 < y2 + h2 &
+                y2 < y1 + h1;
     }
 
     /**
@@ -216,6 +237,12 @@ public class GraphicalObject implements Drawable {
         return myImage;
     }
 
+    public double getVy() { return vy; }
+
+    public double getVx() { return vx; }
+
+    public double getVelocity() { return velocity; }
+
     // Manipulierende Methoden: "setter"
 
     public void setX(double x) {
@@ -238,4 +265,9 @@ public class GraphicalObject implements Drawable {
         this.radius = radius;
     }
 
+    public void setVy(double vy) { this.vy = vy; }
+
+    public void setVx(double vx) { this.vx = vx; }
+
+    public void setVelocity(double velocity) { this.velocity = velocity; }
 }

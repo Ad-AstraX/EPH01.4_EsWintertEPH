@@ -39,16 +39,16 @@ public class ProgramController {
         Background background = new Background();
         viewController.draw(background);
 
-        FirTree firTree1 = new FirTree(0,0);
-        viewController.draw(firTree1);
+        Tree tree1 = new Tree(50,50, 50, 100, 3);
+        viewController.draw(tree1);
 
         Snowman snowman1 = new Snowman(180,475);
         viewController.draw(snowman1);
 
-        FirTree firTree2 = new FirTree(350,25);
-        viewController.draw(firTree2);
-        FirTree firTree3 = new FirTree(200,100);
-        viewController.draw(firTree3);
+        //Tree tree2 = new Tree(350,25, 25, 200, 2);
+        //viewController.draw(tree2);
+        //Tree tree3 = new Tree(200,100, 25, 200, 1);
+        //viewController.draw(tree3);
 
         Snowflake[] snowflakes = new Snowflake[200];
         for (int i = 0; i < 200; i++) {
@@ -57,6 +57,9 @@ public class ProgramController {
         for (Snowflake snowflake : snowflakes) {
             viewController.draw(snowflake);
         }
+
+        Bat bat = new Bat(180,150, 100);
+        viewController.draw(bat);
     }
     /**
      * Aufruf mit jeder Frame

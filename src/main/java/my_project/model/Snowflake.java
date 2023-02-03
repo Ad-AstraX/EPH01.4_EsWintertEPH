@@ -4,11 +4,7 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Snowflake extends GraphicalObject{
 
@@ -45,7 +41,7 @@ public class Snowflake extends GraphicalObject{
             //x = 0;
         //} x < -50-radius) {
             //x = Math.random()*600;
-        }
+        //}
         // check for key presses and pan camera accordingly
         if (ViewController.isKeyDown(0x25)) {
             cameraX -= 150 * dt;
