@@ -42,6 +42,9 @@ public class ProgramController {
         Snowman snowman1 = new Snowman(180,475);
         viewController.draw(snowman1);
 
+        HauntedHouse hauntedhouse1 = new HauntedHouse (100, 100);
+        viewController.draw(hauntedhouse1);
+
         //Tree tree2 = new Tree(350,25, 25, 200, 2);
         //viewController.draw(tree2);
         //Tree tree3 = new Tree(200,100, 25, 200, 1);
