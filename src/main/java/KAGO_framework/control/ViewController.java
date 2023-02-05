@@ -58,7 +58,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
     /**
      * Erzeugt ein Objekt zur Kontrolle des Programmflusses.
      */
-    ViewController(){
+    public ViewController(){
         notChangingDrawables = true;
         notChangingInteractables = true;
         scenes = new ArrayList<>();

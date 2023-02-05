@@ -1,12 +1,15 @@
 package my_project.model;
 
+import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.control.ProgramController;
 
 import java.awt.*;
 
 public class Tree extends GraphicalObject {
     int type;
+    DrawTool drawToolCopy;
     public Tree(double x, double y, double width, double height, int type){
         this.x = x;
         this.y = y;
@@ -23,12 +26,19 @@ public class Tree extends GraphicalObject {
         } else if (type == 3) {
             Babylonica (drawTool);
         }
-
+        this.drawToolCopy = drawTool;
     }
 
     public void update(double dt) {
         if (!(collidesWith(x, y, width, height, 0, 450, 800, 200))) {
-            Gravity.moveObject(this, dt);
+            Gravity g = new Gravity (1300);
+            g.moveObject(this, dt);
+        }
+
+        if (ViewController.isKeyDown(0x53)) {
+            //ProgramController z = new ProgramController(this.viewController)
+            Tree newTree = new Tree (400, 200, 50, 200, 1);
+            //ProgramController.x.draw(newTree);
         }
     }
     public void FirTree (DrawTool drawTool) {

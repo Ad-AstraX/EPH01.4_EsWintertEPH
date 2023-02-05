@@ -25,7 +25,7 @@ public class ProgramController {
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
     }
-
+    //public ViewController x = viewController;
     /**
      * Diese Methode wird genau ein mal nach Programmstart aufgerufen.
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
@@ -33,14 +33,11 @@ public class ProgramController {
     int cameraX = 0;
     int cameraY = 0;
     public void startProgram() {
-        // Erstelle ein Objekt der Klasse Ball und lasse es zeichnen
-        //Ball ball1 = new Ball(150,150);
-        //viewController.draw(ball1);
         Background background = new Background();
         viewController.draw(background);
 
-        Tree tree1 = new Tree(50,50, 50, 100, 3);
-        viewController.draw(tree1);
+        //Tree tree1 = new Tree(50,50, 50, 100, 3);
+        //viewController.draw(tree1);
 
         Snowman snowman1 = new Snowman(180,475);
         viewController.draw(snowman1);
@@ -58,8 +55,11 @@ public class ProgramController {
             viewController.draw(snowflake);
         }
 
-        Bat bat = new Bat(180,150, 100);
+        Bat bat = new Bat(200,150, 100);
         viewController.draw(bat);
+
+        Settings cogwheel = new Settings (550, 550);
+        viewController.draw(cogwheel);
     }
     /**
      * Aufruf mit jeder Frame

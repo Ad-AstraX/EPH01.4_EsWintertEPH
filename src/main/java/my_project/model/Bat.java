@@ -16,7 +16,7 @@ public class Bat extends GraphicalObject{
         this.costume = 0;
         this.cameraX = 0;
         this.cameraY = 0;
-        this.setNewImage("src/main/resources/graphic/bat-animation-1.png");
+        this.setNewImage("src/main/resources/graphic/bat-animation/bat-animation-1.png");
     }
 
     public void draw(DrawTool drawTool) {
@@ -35,7 +35,7 @@ public class Bat extends GraphicalObject{
         // set costume
         this.setNewImage(allPics(costume));
         costume = costume + 12.5*dt;
-        if (costume > 9.0) {
+        if (costume > 9.9) {
             costume = 0;
         }
 
@@ -49,10 +49,10 @@ public class Bat extends GraphicalObject{
     }
     public String allPics (double i) {
         String[] Images = {
-                "src/main/resources/graphic/bat-animation/bat-animation-1.png",
-                "src/main/resources/graphic/bat-animation/bat-animation-2.png",
-                "src/main/resources/graphic/bat-animation/bat-animation-3.png",
-                "src/main/resources/graphic/bat-animation/bat-animation-4.png",
+                "src/main/resources/graphic/bat-animation/bat-animation-1.png", // --> 0
+                "src/main/resources/graphic/bat-animation/bat-animation-2.png", // --> 1
+                "src/main/resources/graphic/bat-animation/bat-animation-3.png", // --> 2
+                "src/main/resources/graphic/bat-animation/bat-animation-4.png", // --> ...
                 "src/main/resources/graphic/bat-animation/bat-animation-5.png",
                 "src/main/resources/graphic/bat-animation/bat-animation-6.png",
                 "src/main/resources/graphic/bat-animation/bat-animation-5.png",
