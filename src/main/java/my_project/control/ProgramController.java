@@ -58,6 +58,9 @@ public class ProgramController {
         Bat bat = new Bat(200,150, 100);
         viewController.draw(bat);
 
+        Cat cat = new Cat(360,500,45);
+        viewController.draw(cat);
+
         Settings cogwheel = new Settings (550, 550);
         viewController.draw(cogwheel);
     }
