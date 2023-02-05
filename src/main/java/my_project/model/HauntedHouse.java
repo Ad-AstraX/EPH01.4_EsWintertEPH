@@ -14,7 +14,7 @@ public class HauntedHouse extends GraphicalObject {
 
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(49, 49, 49));
-        drawTool.drawFilledRectangle(100, 100, 200, 100);
+        drawTool.drawFilledRectangle(150, 130, 500, 300);
     }
 }
 
