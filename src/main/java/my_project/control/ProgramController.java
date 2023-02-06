@@ -33,15 +33,24 @@ public class ProgramController {
     int cameraX = 0;
     int cameraY = 0;
     public void startProgram() {
+
+        //Background
         Background background = new Background();
         viewController.draw(background);
 
+        //Tree
         Tree tree1 = new Tree(50,50, 50, 100, 3);
         viewController.draw(tree1);
 
+        //HauntedHouse
         //HauntedHouse hauntedhouse1 = new HauntedHouse (100, 100);
         //viewController.draw(hauntedhouse1);
 
+        //Sun
+        Sun s1 = new Sun(500,80,35);
+        viewController.draw(s1);
+
+        // Clouds
         Cloud c1 = new Cloud(100,115,30);
         viewController.draw(c1);
         Cloud c2 = new Cloud(350,160,30);
@@ -55,6 +64,7 @@ public class ProgramController {
         Cloud c6 = new Cloud(560,110,30);
         viewController.draw(c6);
 
+        //Snowflake
         Snowflake[] snowflakes = new Snowflake[200];
         for (int i = 0; i < 200; i++) {
             snowflakes[i] = new Snowflake ();
@@ -63,6 +73,7 @@ public class ProgramController {
             viewController.draw(snowflake);
         }
 
+        //Cloud
         Cloud c7 = new Cloud(10,90,20);
         viewController.draw(c7);
         Cloud c8 = new Cloud(620,83,35);
@@ -76,9 +87,11 @@ public class ProgramController {
         Cloud c12 = new Cloud(140,120,10);
         viewController.draw(c12);
 
+        //Bat
         Bat bat = new Bat(200,150, 100);
         viewController.draw(bat);
 
+        //Cat
         Cat cat = new Cat(360,500,45);
         viewController.draw(cat);
 
