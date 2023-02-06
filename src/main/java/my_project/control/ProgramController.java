@@ -36,16 +36,24 @@ public class ProgramController {
         Background background = new Background();
         viewController.draw(background);
 
-        //Tree tree1 = new Tree(50,50, 50, 100, 3);
-        //viewController.draw(tree1);
+        Tree tree1 = new Tree(50,50, 50, 100, 3);
+        viewController.draw(tree1);
 
         //HauntedHouse hauntedhouse1 = new HauntedHouse (100, 100);
         //viewController.draw(hauntedhouse1);
 
-        //Tree tree2 = new Tree(350,25, 25, 200, 2);
-        //viewController.draw(tree2);
-        //Tree tree3 = new Tree(200,100, 25, 200, 1);
-        //viewController.draw(tree3);
+        Cloud c1 = new Cloud(100,115,30);
+        viewController.draw(c1);
+        Cloud c2 = new Cloud(350,160,30);
+        viewController.draw(c2);
+        Cloud c3 = new Cloud(400,100,15);
+        viewController.draw(c3);
+        Cloud c4 = new Cloud(250,145,45);
+        viewController.draw(c4);
+        Cloud c5 = new Cloud(380,122,40);
+        viewController.draw(c5);
+        Cloud c6 = new Cloud(560,110,30);
+        viewController.draw(c6);
 
         Snowflake[] snowflakes = new Snowflake[200];
         for (int i = 0; i < 200; i++) {
@@ -54,6 +62,19 @@ public class ProgramController {
         for (Snowflake snowflake : snowflakes) {
             viewController.draw(snowflake);
         }
+
+        Cloud c7 = new Cloud(10,90,20);
+        viewController.draw(c7);
+        Cloud c8 = new Cloud(620,83,35);
+        viewController.draw(c8);
+        Cloud c9 = new Cloud(230,40,20);
+        viewController.draw(c9);
+        Cloud c10 = new Cloud(110,20,25);
+        viewController.draw(c10);
+        Cloud c11 = new Cloud(70,130,25);
+        viewController.draw(c11);
+        Cloud c12 = new Cloud(140,120,10);
+        viewController.draw(c12);
 
         Bat bat = new Bat(200,150, 100);
         viewController.draw(bat);

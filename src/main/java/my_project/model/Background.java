@@ -10,7 +10,7 @@ public class Background extends GraphicalObject {
         this.setNewImage("src/main/resources/graphic/snowOnGround.png");
     }
     public void draw(DrawTool drawTool) {
-        /*
+
         drawTool.setCurrentColor(new Color(0, 0, 0));
         drawTool.drawFilledRectangle(0, 0, 600, 600);
 
@@ -21,7 +21,7 @@ public class Background extends GraphicalObject {
         drawTool.drawImage(this.getMyImage(), 800, 600);
 
 
-        drawTool.drawImage(getMyImage(), 0, 0);*/
+        drawTool.drawImage(getMyImage(), 0, 0);
     }
 
 }
