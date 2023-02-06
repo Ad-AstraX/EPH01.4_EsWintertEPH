@@ -34,7 +34,7 @@ public class Bat extends GraphicalObject{
 
         // set costume
         this.setNewImage(allPics(costume));
-        costume = costume + 12.5*dt;
+        //costume = costume + 12.5*dt;
         if (costume > 9.9) {
             costume = 0;
         }

@@ -39,11 +39,8 @@ public class ProgramController {
         //Tree tree1 = new Tree(50,50, 50, 100, 3);
         //viewController.draw(tree1);
 
-        Snowman snowman1 = new Snowman(180,475);
-        viewController.draw(snowman1);
-
-        HauntedHouse hauntedhouse1 = new HauntedHouse (100, 100);
-        viewController.draw(hauntedhouse1);
+        //HauntedHouse hauntedhouse1 = new HauntedHouse (100, 100);
+        //viewController.draw(hauntedhouse1);
 
         //Tree tree2 = new Tree(350,25, 25, 200, 2);
         //viewController.draw(tree2);
@@ -64,7 +61,8 @@ public class ProgramController {
         Cat cat = new Cat(360,500,45);
         viewController.draw(cat);
 
-        Settings cogwheel = new Settings (550, 550);
+        Settings cogwheel = new Settings (550, 550, viewController);
+        viewController.register(cogwheel);
         viewController.draw(cogwheel);
     }
     /**

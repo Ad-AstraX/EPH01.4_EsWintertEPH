@@ -166,6 +166,10 @@ public class GraphicalObject implements Drawable {
         return false;
     }
 
+    /**
+     * Creates a bounding box for the two objects and checks for intersections
+     * @author Haya Moussa, EPH GK 2023
+     **/
     public boolean collidesWith(double x1, double y1, double w1, double h1, double x2, double y2, double w2, double h2){
         return  x1 < x2 + w2 &
                 x2 < x1 + w1 &

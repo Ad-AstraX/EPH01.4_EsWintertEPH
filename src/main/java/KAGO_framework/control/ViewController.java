@@ -6,8 +6,10 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 import KAGO_framework.view.DrawFrame;
 import KAGO_framework.view.DrawingPanel;
+import KAGO_framework.model.GraphicalObject;
 
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -351,6 +353,42 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
         }
     }
 
+    /**
+     * Überprüft, ob die Maus sich auf dem übergebenen Bild befindet
+     * @return einen Wahrheitswert
+     * @author Haya Moussa, EPH GK 2023
+     */
+    public boolean mouseOnPic(BufferedImage bI, GraphicalObject gO) {//MouseEvent e) {
+        double mouseX = MouseInfo.getPointerInfo().getLocation().getX();
+        double mouseY = MouseInfo.getPointerInfo().getLocation().getY();
+
+        if (mouseX >= gO.getX() && mouseX < gO.getX() + bI.getWidth()
+                && mouseY >= gO.getY() && mouseY < gO.getY() + bI.getHeight()) {
+            int imageX = (int)mouseX - (int)gO.getX();
+            int imageY = (int)mouseY - (int)gO.getY();
+
+            int pixel = bI.getRGB(imageX, imageY);
+            int alpha = (pixel >> 24) & 0xff;
+
+            if (alpha != 0) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    /**
+     * Überprüft, ob ein linker Mausklick erfolgt ist
+     * @return einen Wahrheitswert, ob geklickt wurde
+     * @author Haya Moussa, EPH GK 2023
+     */
+    public static boolean Button1Clicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            return true;
+        }
+        return false;
+    }
     @Override
     public void mouseDragged(MouseEvent e) {
         Iterator<Interactable> iterator = scenes.get(currentScene).interactables.iterator();
