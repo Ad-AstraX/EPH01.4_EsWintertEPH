@@ -11,6 +11,8 @@ public class Sun extends GraphicalObject{
         x = xpos;
         y = ypos;
         radius = r;
+        width = radius;
+        height = radius;
     }
 
     public void draw(DrawTool drawTool){
@@ -21,5 +23,11 @@ public class Sun extends GraphicalObject{
         drawTool.drawLine(x,y-100,x,y+110);
         drawTool.drawLine(x-100,y-110,x+100,y+100);
         drawTool.drawLine(x+100,y-110,x-100,y+100);
+
+    }
+
+    public void update (double dt) {
+        Draggable dragThis = new Draggable(this, x, y);
+        dragThis.update(dt);
     }
 }

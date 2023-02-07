@@ -14,7 +14,7 @@ public class Cloud extends GraphicalObject {
     }
 
     public void draw(DrawTool drawTool) {
-        drawTool.setCurrentColor(new Color(246, 244, 244));
+        drawTool.setCurrentColor(new Color(246, 244, 244, 128));
         drawTool.drawFilledCircle(x,y,radius);
         drawTool.drawFilledCircle(x+10+radius/2,y-10+radius/2,radius);
         drawTool.drawFilledCircle(x+18+radius,y,radius);
@@ -27,5 +27,7 @@ public class Cloud extends GraphicalObject {
         if(x > 1200){
             x = -200;
         }
+        Draggable dragThis = new Draggable(this, x-radius, y+radius);
+        dragThis.update(dt);
     }
 }

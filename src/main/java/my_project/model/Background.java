@@ -14,7 +14,7 @@ public class Background extends GraphicalObject {
         drawTool.setCurrentColor(new Color(0, 0, 0));
         drawTool.drawFilledRectangle(0, 0, 600, 600);
         */
-        drawTool.setCurrentColor(new Color(168, 220, 236));
+        drawTool.setCurrentColor(new Color(61, 67, 69));
         drawTool.drawFilledRectangle(0,0,600,420);
 
         drawTool.setCurrentColor(new Color(255, 255, 255));

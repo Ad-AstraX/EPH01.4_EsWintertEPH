@@ -7,15 +7,13 @@ import my_project.model.*;
 import KAGO_framework.model.GraphicalObject;
 
 import java.awt.*;
-import java.io.*;
-import java.util.*;
 import java.util.List;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
  * mit jeder Frame im laufenden Programm aufgerufen.
  */
-public class ProgramController implements Drawable {
+public class ProgramController implements Drawable{
 
     //Attribute
 
@@ -39,7 +37,6 @@ public class ProgramController implements Drawable {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     double f = 20;
-    List<Tree> trees = new ArrayList<>();
     public void startProgram() {
         Background background = new Background();
         viewController.draw(background);
@@ -79,28 +76,35 @@ public class ProgramController implements Drawable {
 
         if (ViewController.isKeyDown(0x31) && ViewController.isKeyDown(0x41)) {
             Tree tree = new Tree(200,100, 25, 200, 1);
-            //trees.add(tree);
             viewController.draw(tree);
         }
         if (ViewController.isKeyDown(0x32) && ViewController.isKeyDown(0x41)) {
             Tree tree = new Tree(200,100, 25, 200, 2);
-            //trees.add(tree);
             viewController.draw(tree);
         }
         if (ViewController.isKeyDown(0x33) && ViewController.isKeyDown(0x41)) {
             Tree tree = new Tree(200,100, 25, 200, 3);
-            //trees.add(tree);
             viewController.draw(tree);
         }
         if (ViewController.isKeyDown(0x34) && ViewController.isKeyDown(0x41)) {
             Cat cat = new Cat(200,100, 25);
-            //trees.add(cat);
             viewController.draw(cat);
         }
         if (ViewController.isKeyDown(0x35) && ViewController.isKeyDown(0x41)) {
             Bat bat = new Bat(200,100, 50);
-            //trees.add(cat);
             viewController.draw(bat);
+        }
+        if (ViewController.isKeyDown(0x36) && ViewController.isKeyDown(0x41)) {
+            HauntedHouse hauntedHouse = new HauntedHouse(200,100);
+            viewController.draw(hauntedHouse);
+        }
+        if (ViewController.isKeyDown(0x37) && ViewController.isKeyDown(0x41)) {
+            Sun sun = new Sun(200,100, 35);
+            viewController.draw(sun);
+        }
+        if (ViewController.isKeyDown(0x38) && ViewController.isKeyDown(0x41)) {
+            Cloud sun = new Cloud(200,100, 35);
+            viewController.draw(sun);
         }
         GraphicalObject g = new GraphicalObject();
         if (g.collidesWith(f, 30, 10, 10, mouseX-660, mouseY-286, 10, 10)

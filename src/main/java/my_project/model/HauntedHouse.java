@@ -21,7 +21,10 @@ public class HauntedHouse extends GraphicalObject {
         drawTool.setCurrentColor(new Color(183, 5, 2));
         drawTool.drawFilledEllipse(260, 270, 5, 2);
         drawTool.drawFilledEllipse(275, 270, 5, 2);
-
+    }
+    public void update (double dt) {
+        Draggable dragThis = new Draggable(this, x, y);
+        dragThis.update(dt);
     }
 }
 
