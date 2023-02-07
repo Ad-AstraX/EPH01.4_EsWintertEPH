@@ -1,13 +1,21 @@
 package my_project.control;
 
+import KAGO_framework.control.Drawable;
 import KAGO_framework.control.ViewController;
+import KAGO_framework.view.DrawTool;
 import my_project.model.*;
+import KAGO_framework.model.GraphicalObject;
+
+import java.awt.*;
+import java.io.*;
+import java.util.*;
+import java.util.List;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
  * mit jeder Frame im laufenden Programm aufgerufen.
  */
-public class ProgramController {
+public class ProgramController implements Drawable {
 
     //Attribute
 
@@ -30,41 +38,15 @@ public class ProgramController {
      * Diese Methode wird genau ein mal nach Programmstart aufgerufen.
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
-    int cameraX = 0;
-    int cameraY = 0;
+    double f = 20;
+    List<Tree> trees = new ArrayList<>();
     public void startProgram() {
-
-        //Background
         Background background = new Background();
         viewController.draw(background);
 
-        //Tree
-        Tree tree1 = new Tree(50,50, 50, 100, 3);
-        viewController.draw(tree1);
-
-        //HauntedHouse
         //HauntedHouse hauntedhouse1 = new HauntedHouse (100, 100);
         //viewController.draw(hauntedhouse1);
 
-        //Sun
-        Sun s1 = new Sun(500,80,35);
-        viewController.draw(s1);
-
-        // Clouds
-        Cloud c1 = new Cloud(100,115,30);
-        viewController.draw(c1);
-        Cloud c2 = new Cloud(350,160,30);
-        viewController.draw(c2);
-        Cloud c3 = new Cloud(400,100,15);
-        viewController.draw(c3);
-        Cloud c4 = new Cloud(250,145,45);
-        viewController.draw(c4);
-        Cloud c5 = new Cloud(380,122,40);
-        viewController.draw(c5);
-        Cloud c6 = new Cloud(560,110,30);
-        viewController.draw(c6);
-
-        //Snowflake
         Snowflake[] snowflakes = new Snowflake[200];
         for (int i = 0; i < 200; i++) {
             snowflakes[i] = new Snowflake ();
@@ -73,36 +55,66 @@ public class ProgramController {
             viewController.draw(snowflake);
         }
 
-        //Cloud
-        Cloud c7 = new Cloud(10,90,20);
-        viewController.draw(c7);
-        Cloud c8 = new Cloud(620,83,35);
-        viewController.draw(c8);
-        Cloud c9 = new Cloud(230,40,20);
-        viewController.draw(c9);
-        Cloud c10 = new Cloud(110,20,25);
-        viewController.draw(c10);
-        Cloud c11 = new Cloud(70,130,25);
-        viewController.draw(c11);
-        Cloud c12 = new Cloud(140,120,10);
-        viewController.draw(c12);
-
-        //Bat
         Bat bat = new Bat(200,150, 100);
         viewController.draw(bat);
-
-        //Cat
-        Cat cat = new Cat(360,500,45);
-        viewController.draw(cat);
 
         Settings cogwheel = new Settings (550, 550, viewController);
         viewController.register(cogwheel);
         viewController.draw(cogwheel);
+
+
     }
+    @Override
+    public void update(double dt) {
+
+    }
+
     /**
      * Aufruf mit jeder Frame
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
+        double mouseX = MouseInfo.getPointerInfo().getLocation().getX();
+        double mouseY = MouseInfo.getPointerInfo().getLocation().getY();
+
+        if (ViewController.isKeyDown(0x31) && ViewController.isKeyDown(0x41)) {
+            Tree tree = new Tree(200,100, 25, 200, 1);
+            //trees.add(tree);
+            viewController.draw(tree);
+        }
+        if (ViewController.isKeyDown(0x32) && ViewController.isKeyDown(0x41)) {
+            Tree tree = new Tree(200,100, 25, 200, 2);
+            //trees.add(tree);
+            viewController.draw(tree);
+        }
+        if (ViewController.isKeyDown(0x33) && ViewController.isKeyDown(0x41)) {
+            Tree tree = new Tree(200,100, 25, 200, 3);
+            //trees.add(tree);
+            viewController.draw(tree);
+        }
+        if (ViewController.isKeyDown(0x34) && ViewController.isKeyDown(0x41)) {
+            Cat cat = new Cat(200,100, 25);
+            //trees.add(cat);
+            viewController.draw(cat);
+        }
+        if (ViewController.isKeyDown(0x35) && ViewController.isKeyDown(0x41)) {
+            Bat bat = new Bat(200,100, 50);
+            //trees.add(cat);
+            viewController.draw(bat);
+        }
+        GraphicalObject g = new GraphicalObject();
+        if (g.collidesWith(f, 30, 10, 10, mouseX-660, mouseY-286, 10, 10)
+                && ViewController.isKeyDown(0x4D)) {
+            f = mouseX-660+f;
+        }
+    }
+
+    @Override
+    public void draw(DrawTool drawTool) {
+        drawTool.setCurrentColor(new Color(0, 0, 0, 128));
+        drawTool.drawFilledRectangle(20, 20, 100, 20);
+
+        drawTool.setCurrentColor (new Color (255, 255, 255));
+        drawTool.drawCircle(f, 30, 10);
     }
 }

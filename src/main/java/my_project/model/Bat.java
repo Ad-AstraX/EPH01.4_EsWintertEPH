@@ -5,47 +5,52 @@ import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
 public class Bat extends GraphicalObject{
+    double cameraAngle = 0;
     double costume;
     int speed;
-    int cameraX;
-    int cameraY;
+    double cameraX;
     public Bat (int x, int y, int speed) {
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.costume = 0;
         this.cameraX = 0;
-        this.cameraY = 0;
         this.setNewImage("src/main/resources/graphic/bat-animation/bat-animation-1.png");
     }
 
     public void draw(DrawTool drawTool) {
-        drawTool.drawImage(getMyImage(), x+cameraX, y+cameraY);
+        drawTool.drawImage(getMyImage(), x+cameraX, y);
     }
 
     public void update (double dt) {
+        if (x < -getMyImage().getWidth()) {
+            x = 800+getMyImage().getWidth();
+            y = 20 + Math.random()*200;
+        }
         // x and y position
         x = x -speed*dt;
-         /*
-        if (x < -50) {
-            x = 850;
-            y = 50 + Math.random()*200;
-        }*/
 
         // set costume
         this.setNewImage(allPics(costume));
-        //costume = costume + 12.5*dt;
+        costume = costume + 12.5*dt;
         if (costume > 9.9) {
             costume = 0;
         }
 
         // check for key presses and pan camera accordingly
         if (ViewController.isKeyDown(0x25)) {
-            cameraX -= 200 * dt;
+            cameraAngle -= 150 * dt;
         }
         if (ViewController.isKeyDown(0x27)) {
-            cameraX += 200 * dt;
+            cameraAngle += 150 * dt;
         }
+        double[] centers = {x + width / 2, y + height / 2};
+
+        Draggable dragThis = new Draggable(this, centers[0], centers[1]);
+        dragThis.update(dt);
+
+        Resize resize = new Resize(this);
+        resize.update(dt);
     }
     public String allPics (double i) {
         String[] Images = {

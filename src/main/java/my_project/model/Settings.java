@@ -10,7 +10,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
 public class Settings extends GraphicalObject implements Interactable{
-    DrawTool copy;
+    DrawTool copyDrawTool;
     ViewController vc;
     public Settings(int x, int y, ViewController viewController) {
         this.setNewImage("src/main/resources/graphic/Zahnrad.png");
@@ -21,11 +21,10 @@ public class Settings extends GraphicalObject implements Interactable{
 
     public void draw(DrawTool drawTool) {
         drawTool.drawImage(getMyImage(), x, y);
-        copy = drawTool;
+        copyDrawTool = drawTool;
     }
 
     public void update(double dt) {
-
     }
     public void getDragged() {
     }
@@ -47,7 +46,8 @@ public class Settings extends GraphicalObject implements Interactable{
 
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == 1){
-            this.setNewImage("src/main/resources/graphic/bat-animation/bat-animation-1.png");
+            //this.draw(copyDrawTool).setCurrentColor(new Color (0, 0, 0, 127));
+            copyDrawTool.drawFilledRectangle(x, y, getMyImage().getWidth(), 500);
         }
     }
 

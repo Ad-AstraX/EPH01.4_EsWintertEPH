@@ -32,12 +32,21 @@ public class Cat extends GraphicalObject {
         if(costume > 9.9) {
             costume = 0;
         }
+        /*
         if (ViewController.isKeyDown(0x25)) {
             cameraX -= 200 * dt;
         }
         if (ViewController.isKeyDown(0x27)) {
             cameraX += 200 * dt;
-        }
+        }*/
+
+        double[] centers = {x + width / 2, y + height / 2};
+
+        Draggable dragThis = new Draggable(this, centers[0], centers[1]);
+        dragThis.update(dt);
+
+        Resize resize = new Resize(this);
+        resize.update(dt);
     }
 
     public String allPics (double i) {
