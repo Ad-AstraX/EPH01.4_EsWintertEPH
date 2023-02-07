@@ -53,7 +53,7 @@ public class Bat extends GraphicalObject{
         resize.update(dt);
     }
     public String allPics (double i) {
-        String[] Images = {
+        String[] images = {
                 "src/main/resources/graphic/bat-animation/bat-animation-1.png", // --> 0
                 "src/main/resources/graphic/bat-animation/bat-animation-2.png", // --> 1
                 "src/main/resources/graphic/bat-animation/bat-animation-3.png", // --> 2
@@ -65,6 +65,6 @@ public class Bat extends GraphicalObject{
                 "src/main/resources/graphic/bat-animation/bat-animation-3.png",
                 "src/main/resources/graphic/bat-animation/bat-animation-2.png"
         };
-        return Images[(int) i];
+        return images[(int) i];
     }
 }

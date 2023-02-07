@@ -44,8 +44,8 @@ public class ProgramController implements Drawable{
         //HauntedHouse hauntedhouse1 = new HauntedHouse (100, 100);
         //viewController.draw(hauntedhouse1);
 
-        Snowflake[] snowflakes = new Snowflake[200];
-        for (int i = 0; i < 200; i++) {
+        Snowflake[] snowflakes = new Snowflake[400];
+        for (int i = 0; i < 400; i++) {
             snowflakes[i] = new Snowflake ();
         }
         for (Snowflake snowflake : snowflakes) {
